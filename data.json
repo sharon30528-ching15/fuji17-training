@@ -1,0 +1,36 @@
+{
+  "updated":"2026-09-18",
+  "longest":5.21,
+  "goalStatus":"🟡 追蹤中",
+  "goalNote":"先建立長距離耐力",
+  "currentWeek":3,
+  "weekRange":"9/14–9/20",
+  "weekSessions":[
+    {"date":"9/15（二）","type":"輕鬆跑","main":"5.21K","sub":"實際 41:33 · 7:59/km","note":"距離表現進步，但輕鬆跑強度偏高。","done":true,"next":false},
+    {"date":"9/17（四）","type":"品質跑","main":"3–4K","sub":"保守執行，不追求爆發速度","note":"因前次跑量與心率偏高，本堂優先控制負荷。","done":false,"next":true},
+    {"date":"9/20（日）","type":"長跑","main":"6 KM","sub":"建議 8:15–8:35/km","note":"穩定完成、不追速度，建立 17K 耐力。","done":false,"next":false}
+  ],
+  "results":[
+    {"date":"9/15（二）","type":"輕鬆跑","planned":"3K","actual":"5.21K","pace":"7:59","hr":"168","outcome":"🟡 強度偏高","attention":true},
+    {"date":"9/17（四）","type":"品質跑","planned":"3–4K","actual":"—","pace":"—","hr":"—","outcome":"待執行","attention":false},
+    {"date":"9/20（日）","type":"長跑","planned":"6K","actual":"—","pace":"—","hr":"—","outcome":"待執行","attention":false}
+  ],
+  "coach":{"date":"9/15","stage":"建立 6–10K 基礎耐力","focus":"不要因單次跑快而增加所有課表強度。","milestone":"穩定完成 6–7K → 8K → 10K。"},
+  "plan":[
+    {"week":1,"range":"8/31–9/6","tue":"輕鬆 3K","thu":"品質 3K","sun":"5K","focus":"建立習慣"},
+    {"week":2,"range":"9/7–9/13","tue":"輕鬆 3K","thu":"品質 3K","sun":"6K","focus":"穩定跑量"},
+    {"week":3,"range":"9/14–9/20","tue":"輕鬆 3K","thu":"品質 3–4K","sun":"6K","focus":"依 Garmin 控制強度"},
+    {"week":4,"range":"9/21–9/27","tue":"輕鬆 3–4K","thu":"節奏 3K","sun":"5K","focus":"恢復週"},
+    {"week":5,"range":"9/28–10/4","tue":"輕鬆 4K","thu":"品質 4K","sun":"8K","focus":"進入耐力期"},
+    {"week":6,"range":"10/5–10/11","tue":"輕鬆 4K","thu":"品質 4K","sun":"9K","focus":"延長時間"},
+    {"week":7,"range":"10/12–10/18","tue":"輕鬆 4–5K","thu":"節奏 4K","sun":"10K","focus":"首次雙位數"},
+    {"week":8,"range":"10/19–10/25","tue":"輕鬆 4K","thu":"品質 4K","sun":"8K","focus":"恢復週"},
+    {"week":9,"range":"10/26–11/1","tue":"輕鬆 5K","thu":"節奏 4–5K","sun":"11K","focus":"耐力提升"},
+    {"week":10,"range":"11/2–11/8","tue":"輕鬆 5K","thu":"品質 5K","sun":"12K","focus":"穩定長跑"},
+    {"week":11,"range":"11/9–11/15","tue":"輕鬆 5K","thu":"節奏 5K","sun":"14K","focus":"關鍵耐力檢查"},
+    {"week":12,"range":"11/16–11/22","tue":"輕鬆 4–5K","thu":"品質 4K","sun":"11K","focus":"恢復週"},
+    {"week":13,"range":"11/23–11/29","tue":"輕鬆 5K","thu":"品質 5K","sun":"15K","focus":"最終驗證週"},
+    {"week":14,"range":"11/30–12/6","tue":"輕鬆 4K","thu":"短節奏 3K","sun":"8–10K","focus":"Taper"},
+    {"week":15,"range":"12/7–12/13","tue":"輕鬆 3K","thu":"短跑＋休息","sun":"17K 比賽","focus":"Race Week"}
+  ]
+}
