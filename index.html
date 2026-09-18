@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>17K 富士山動態訓練 Dashboard</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#20242a;--muted:#707780;--line:#e1e4e8;--accent:#55745b;--soft:#edf3ee;--red:#fde8e8;--redtext:#8a2626}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif}.wrap{max-width:1080px;margin:auto;padding:24px 16px 50px}.grid4,.grid3,.coach{display:grid;gap:12px}.grid4{grid-template-columns:repeat(4,1fr)}.grid3{grid-template-columns:repeat(3,1fr)}.coach{grid-template-columns:repeat(4,1fr)}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}.label,.muted{color:var(--muted);font-size:13px}.big{font-size:28px;font-weight:750;margin:4px 0}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}h2{font-size:18px;margin:0 0 4px}section{margin-top:16px}.bar{height:14px;border-radius:99px;background:#e8ece9;overflow:hidden;margin-top:14px}.bar>div{height:100%;background:var(--accent);border-radius:99px}.btn{border:1px solid var(--accent);background:white;color:var(--accent);border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}.pill{background:var(--soft);border-radius:99px;padding:7px 11px;font-size:12px}.next{border:2px solid var(--accent)}table{border-collapse:collapse;width:100%;min-width:700px}th,td{text-align:left;padding:12px 9px;border-top:1px solid var(--line);font-size:14px}th{color:var(--muted);border-top:0}.scroll{overflow-x:auto}.attention{background:var(--red);color:var(--redtext)}#fullPlan[hidden]{display:none}.coach>div{min-width:0}.rule{background:#f2f3f4;border-radius:10px;padding:12px}.status{font-weight:700}.foot{margin-top:18px;color:var(--muted);font-size:12px;text-align:center}
+@media(max-width:760px){.grid4{grid-template-columns:repeat(2,1fr)}.grid3,.coach{grid-template-columns:1fr}.wrap{padding-top:14px}.big{font-size:23px}}
+</style></head>
+<body><main class="wrap">
+<div id="summary" class="grid4"></div>
+<section class="card"><div class="row"><div><h2>17K 距離進度</h2><div class="muted">以目前最長單次跑步距離計算</div></div><div style="text-align:right"><div class="big" id="progressPct">—</div><div class="muted" id="progressText"></div></div></div><div class="bar"><div id="progressBar" style="width:0"></div></div></section>
+<section><div class="row"><div><h2 id="weekTitle">本週動態課表</h2><div class="muted">週二／週四／週日三堂主課表</div></div><div class="row"><span class="pill">依 Garmin 表現動態調整</span><button class="btn" id="toggle">查看動態課表</button></div></div><div class="grid3" id="weekCards" style="margin-top:12px"></div></section>
+<section class="card" id="fullPlan" hidden><div class="row"><div><h2>完整 15 週動態課表</h2><div class="muted">每次訓練後可依實際成果調整</div></div><span class="pill">Dynamic Plan</span></div><div class="scroll"><table><thead><tr><th>週</th><th>日期</th><th>週二</th><th>週四</th><th>週日長跑</th><th>週重點</th></tr></thead><tbody id="planBody"></tbody></table></div></section>
+<section class="card"><h2>每日執行成果</h2><div class="muted" id="resultWeek"></div><div class="scroll"><table><thead><tr><th>日期</th><th>課表</th><th>原定</th><th>實際</th><th>配速</th><th>心率</th><th>成果</th></tr></thead><tbody id="results"></tbody></table></div></section>
+<section class="card"><div class="row"><div><h2>動態教練判斷</h2><div class="muted">依實際訓練成果更新</div></div><span class="pill" id="coachDate"></span></div><div class="coach" id="coach" style="margin-top:16px"></div></section>
+<div class="foot" id="updated"></div>
+</main>
+<script>
+fetch('data.json?ts='+Date.now()).then(r=>r.json()).then(d=>{
+ const pct=Math.min(100,Math.round(d.longest/17*100));
+ document.querySelector('#summary').innerHTML=[
+ ['比賽目標','17 KM','12/13 富士山'],['目標完賽','< 2:00','目標均速 7:03/km'],['目前最長實績',d.longest.toFixed(2)+' KM',pct+'% of 17K'],['目標狀態',d.goalStatus,d.goalNote]
+ ].map(x=>'<div class="card"><div class="label">'+x[0]+'</div><div class="big">'+x[1]+'</div><div class="muted">'+x[2]+'</div></div>').join('');
+ progressPct.textContent=pct+'%';progressText.textContent=d.longest.toFixed(2)+' / 17 KM';progressBar.style.width=pct+'%';
+ weekTitle.innerHTML='本週動態課表 <span class="muted">｜第 '+d.currentWeek+' 週・'+d.weekRange+'</span>';
+ weekCards.innerHTML=d.weekSessions.map(s=>'<article class="card '+(s.next?'next':'')+'"><div class="muted">'+s.date+'</div><div class="row"><b>'+s.type+'</b><span>'+(s.done?'✓':s.next?'下一堂':'○')+'</span></div><div class="big">'+s.main+'</div><div class="muted">'+s.sub+'</div><p>'+s.note+'</p></article>').join('');
+ planBody.innerHTML=d.plan.map(p=>'<tr><td><b>'+p.week+'</b></td><td>'+p.range+'</td><td>'+p.tue+'</td><td>'+p.thu+'</td><td>'+p.sun+'</td><td>'+p.focus+'</td></tr>').join('');
+ resultWeek.textContent='第 '+d.currentWeek+' 週・'+d.weekRange;
+ results.innerHTML=d.results.map(r=>'<tr class="'+(r.attention?'attention':'')+'"><td><b>'+r.date+'</b></td><td>'+r.type+'</td><td>'+r.planned+'</td><td>'+r.actual+'</td><td>'+r.pace+'</td><td>'+r.hr+'</td><td>'+r.outcome+'</td></tr>').join('');
+ coachDate.textContent='對應 '+d.coach.date+' 訓練';
+ coach.innerHTML=[['目前階段',d.coach.stage],['本週重點',d.coach.focus],['下一個里程碑',d.coach.milestone],['調整規則','🟢 有餘裕 → 進階<br>🟡 偏累 → 維持<br>🔴 疼痛／未完成 → 降量']].map((x,i)=>'<div class="'+(i===3?'rule':'')+'"><b>'+x[0]+'</b><p class="muted">'+x[1]+'</p></div>').join('');
+ updated.textContent='最後更新：'+d.updated;
+}).catch(()=>{document.body.insertAdjacentHTML('afterbegin','<div style="padding:12px;background:#fde8e8">資料載入失敗，請稍後再試。</div>')});
+const toggle=document.querySelector('#toggle'),full=document.querySelector('#fullPlan');toggle.addEventListener('click',()=>{full.hidden=!full.hidden;toggle.textContent=full.hidden?'查看動態課表':'收合動態課表';if(!full.hidden)full.scrollIntoView({behavior:'smooth',block:'start'})});
+</script></body></html>
