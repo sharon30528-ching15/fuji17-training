@@ -1,8 +1,8 @@
 {
   "updated": "2026-09-20",
-  "longest": 5.21,
-  "goalStatus": "🟡 追蹤中",
-  "goalNote": "先建立長距離耐力",
+  "longest": 6.6,
+  "goalStatus": "🟡 進展中",
+  "goalNote": "6.6K 耐力達標，品質段已接近目標配速",
   "currentWeek": 4,
   "weekRange": "9/21–9/27",
   "weekSessions": [
@@ -307,5 +307,20 @@
       "hrZones": "Z2 161–173 bpm：38:45（71%）；Z1 153–160 bpm：9:27（17%）；Z3 174–192 bpm：0:07；Z4/Z5：0",
       "hrAnalysis": "依 Garmin 目前跑步乳酸閾值 195 bpm 的區間設定，本次大部分時間位於 Z2；後半心率有緩慢上升，且配速較原訂長跑略快。"
     }
+  },
+  "paceProgress": {
+    "percent": 72,
+    "label": "品質段已達 7:13/km",
+    "goal": "7:03/km",
+    "steps": "7:27 → 7:13 → 7:03/km"
+  },
+  "lastCompletedWeek": {
+    "week": 3,
+    "range": "9/14–9/20",
+    "completed": 15.83,
+    "targetMin": 12,
+    "targetMax": 13,
+    "completedSessions": 3,
+    "totalSessions": 3
   }
 }
