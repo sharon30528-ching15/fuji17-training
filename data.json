@@ -2,7 +2,7 @@
   "updated": "2026-09-21",
   "longest": 6.6,
   "goalStatus": "🟡 進展中",
-  "goalNote": "6.6K 耐力達標，品質段已接近目標配速",
+  "goalNote": "品質段最快 7:13/km；目前重點是把接近 7:03/km 的能力逐步延伸到更長距離",
   "currentWeek": 4,
   "weekRange": "9/21–9/27",
   "weekSessions": [
@@ -352,10 +352,17 @@
     }
   },
   "paceProgress": {
-    "percent": 72,
-    "label": "品質段已達 7:13/km",
+    "percent": 58,
+    "label": "品質段最快 7:13/km",
     "goal": "7:03/km",
-    "steps": "7:27 → 7:13 → 7:03/km"
+    "steps": "目前階段：建立目標配速持續力",
+    "method": "配速能力 40%＋持續距離 40%＋穩定度 20%",
+    "components": {
+      "paceAbility": 40,
+      "enduranceAtGoalPace": 40,
+      "stability": 20
+    },
+    "note": "進度依接近 7:03/km 的速度能力、可持續距離與完成穩定度綜合評估；不以單一最快 1K 直接代表 17K 比賽能力。"
   },
   "lastCompletedWeek": {
     "week": 3,
