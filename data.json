@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-20",
+  "updated": "2026-09-21",
   "longest": 6.6,
   "goalStatus": "🟡 進展中",
   "goalNote": "6.6K 耐力達標，品質段已接近目標配速",
@@ -101,6 +101,45 @@
     }
   ],
   "results": [
+    {
+      "date": "9/1（二）",
+      "type": "輕鬆跑",
+      "planned": "3K",
+      "actual": "3.22K",
+      "pace": "8:43",
+      "hr": "153",
+      "outcome": "🟢 輕鬆跑達標",
+      "attention": false,
+      "source": "Garmin Connect 截圖補登"
+    },
+    {
+      "date": "9/9（三）",
+      "type": "輕鬆跑",
+      "planned": "3K",
+      "actual": "4.02K",
+      "pace": "8:03",
+      "hr": "170",
+      "outcome": "🟡 配速偏快",
+      "attention": false,
+      "source": "Garmin Connect 截圖補登"
+    },
+    {
+      "date": "9/10（四）",
+      "type": "品質跑",
+      "planned": "3K",
+      "actual": "3.11K",
+      "pace": "7:57",
+      "hr": "170",
+      "outcome": "🟢 品質課完成",
+      "attention": false,
+      "source": "Garmin Connect 截圖補登",
+      "laps": [
+        "1K 8:29",
+        "1K 7:46",
+        "1K 7:36",
+        "0.11K 7:54/km"
+      ]
+    },
     {
       "date": "9/15（二）",
       "type": "輕鬆跑",
