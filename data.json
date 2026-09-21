@@ -119,7 +119,9 @@
       "pace": "7:42",
       "hr": "167",
       "outcome": "🟢 品質課表達標",
-      "attention": false
+      "attention": false,
+      "scheduledDate": "9/17（四）",
+      "rescheduled": true
     },
     {
       "date": "9/20（日）",
