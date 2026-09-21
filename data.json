@@ -121,7 +121,9 @@
       "hr": "170",
       "outcome": "🟡 配速偏快",
       "attention": false,
-      "source": "Garmin Connect 截圖補登"
+      "source": "Garmin Connect 截圖補登",
+      "scheduledDate": "9/8（二）",
+      "rescheduled": true
     },
     {
       "date": "9/10（四）",
