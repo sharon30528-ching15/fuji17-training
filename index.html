@@ -171,6 +171,30 @@ box-shadow:none!important
 .weekly-dashboard .mobile-course-detail .pace-table th:nth-child(2),.weekly-dashboard .mobile-course-detail .pace-table td:nth-child(2){width:20%}
 .weekly-dashboard .mobile-course-detail .pace-table th:nth-child(3),.weekly-dashboard .mobile-course-detail .pace-table td:nth-child(3){width:60%;overflow-wrap:anywhere;white-space:normal}
 }
+</style><style id="weekly-completed-course-v1">
+.weekly-dashboard .timeline-item .course-head b{display:flex;align-items:center;gap:22px}
+.weekly-dashboard .course-completed-tag{font-size:11px;font-weight:700;color:var(--accent);white-space:nowrap}
+.weekly-dashboard .course-results-metrics{display:grid;grid-template-columns:1fr;gap:5px;margin:12px 0}
+.weekly-dashboard .course-result-row{display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0;padding:6px 12px;border:1px solid var(--line);border-radius:9px;background:#fff}
+.weekly-dashboard .course-result-row span{font-size:12px;color:var(--muted)}
+.weekly-dashboard .course-result-row strong{font-size:14px;text-align:right;font-variant-numeric:tabular-nums}
+.weekly-dashboard .course-result-status{font-size:12px;margin:8px 0 0}
+.weekly-dashboard .course-split-title{font-size:15px;font-weight:700;margin-top:14px}
+.weekly-dashboard .course-splits{margin-top:9px;border-top:1px solid #d9e3dc}
+.weekly-dashboard .course-split{display:grid;grid-template-columns:70px minmax(0,1fr) 75px;gap:8px;align-items:center;min-width:0;padding:7px 2px;border-bottom:1px solid #d9e3dc;font-size:12px}
+.weekly-dashboard .course-split>span{color:var(--muted)}
+.weekly-dashboard .course-split strong{text-align:right;font-size:12px;font-variant-numeric:tabular-nums}
+.weekly-dashboard .course-split-track{height:6px;border-radius:9px;background:#dfe8e1;overflow:hidden}
+.weekly-dashboard .course-split-track i{display:block;height:100%;border-radius:9px;background:var(--accent)}
+.weekly-dashboard .course-split-note{font-size:11px;color:var(--muted);margin:7px 0 0}
+.weekly-dashboard .course-result-coach{border-top:1px solid #d9e3dc;padding-top:10px;margin-top:14px}
+.weekly-dashboard .course-result-coach b{font-size:13px}
+.weekly-dashboard .course-result-coach p{font-size:12px;line-height:1.55;margin:6px 0 0}
+@media(max-width:760px){
+.weekly-dashboard .timeline-item .course-head b{justify-content:center;gap:4px;flex-wrap:wrap}
+.weekly-dashboard .course-completed-tag{font-size:9px}
+.weekly-dashboard .mobile-course-detail .course-split{grid-template-columns:65px minmax(0,1fr) 72px;gap:6px}
+}
 </style></head>
 <body><main class="wrap">
 <section class="race-hero">
@@ -219,8 +243,35 @@ fetch('data.json?ts='+Date.now()).then(r=>r.json()).then(d=>{const progressPct=d
  distanceRing.style.setProperty('--p',pct);distancePct.textContent=pct+'%';distanceKm.textContent=d.longest.toFixed(2)+' / 17K';distanceMain.textContent='目前最長 '+d.longest.toFixed(2)+'K';distanceSteps.textContent='目前 '+d.longest.toFixed(2)+'K → 下一里程碑 8K → 17K';const pp=d.paceProgress||{percent:38,label:'品質跑建立中',goal:'7:03/km',steps:'建立中 → 7:15/km → 7:03/km'};paceRing.style.setProperty('--p',pp.percent);pacePct.textContent=pp.percent+'%';paceGoal.textContent='目標 '+pp.goal;paceMain.textContent=pp.label;paceSteps.textContent=pp.steps;goalPill.textContent=d.goalStatus+'｜'+d.goalNote;
  planRing.style.setProperty('--p',planPct);planPctEl.textContent=planPct+'%';planWeek.textContent='W'+d.currentWeek+' / W15';planMain.textContent='目前第 '+d.currentWeek+' 週';planSteps.textContent='W'+d.currentWeek+' → W11 14K檢核 → W13 15K驗證 → W15 比賽';fullWeekLabel.textContent='W'+d.currentWeek+'｜本週跑量';
  weekTitle.textContent='本週動態課表';if(typeof weeklySub!=='undefined')weeklySub.textContent='W'+d.currentWeek+' · '+d.weekRange+'｜'+(d.currentWeek===4?'恢復週':'動態調整');
- const sessions=d.weekSessions.slice(0,3);const labels=['課程 1','課程 2','課程 3'];const nextSession=sessions.find(s=>s.next&&!s.done)||sessions.find(s=>!s.done);if(nextSession){const rpe=nextSession.detail?.rpe||'依體感控制';const pace=nextSession.sub||'';nextSessionCard.innerHTML='<div class="next-label">下一堂課</div><div class="next-title">'+nextSession.date+'　'+nextSession.type+' '+nextSession.main+'</div><div class="next-meta">'+pace+' ・ '+rpe+'</div><div class="next-key">重點：'+(nextSession.detail?.key||nextSession.note)+'</div>'}else{nextSessionCard.innerHTML='<div class="next-label">本週完成</div><div class="next-title">本週課表已全部完成 ✓</div>'}weekCards.innerHTML=sessions.map((s,i)=>{const missed=!s.done&&!s.next&&i===0;return '<article class="timeline-item"><button class="timeline-node '+(missed?'missed':'')+'" data-i="'+i+'" type="button">'+(missed?'×':s.done?'✓':s.next?'▶':'→')+'</button><div class="course-head"><div class="muted">'+s.date+'</div><b>'+s.type+'</b></div><div class="card timeline-card '+(missed?'missed':s.next?'next-card':s.done?'done-card':'')+'" data-i="'+i+'"><div class="big">'+s.main+'</div><div class="muted">'+s.sub+'</div></div></article>'}).join('');
+ const sessions=d.weekSessions.slice(0,3);const labels=['課程 1','課程 2','課程 3'];const nextSession=sessions.find(s=>s.next&&!s.done)||sessions.find(s=>!s.done);if(nextSession){const rpe=nextSession.detail?.rpe||'依體感控制';const pace=nextSession.sub||'';nextSessionCard.innerHTML='<div class="next-label">下一堂課</div><div class="next-title">'+nextSession.date+'　'+nextSession.type+' '+nextSession.main+'</div><div class="next-meta">'+pace+' ・ '+rpe+'</div><div class="next-key">重點：'+(nextSession.detail?.key||nextSession.note)+'</div>'}else{nextSessionCard.innerHTML='<div class="next-label">本週完成</div><div class="next-title">本週課表已全部完成 ✓</div>'}weekCards.innerHTML=sessions.map((s,i)=>{const missed=!s.done&&!s.next&&i===0;return '<article class="timeline-item"><button class="timeline-node '+(missed?'missed':'')+'" data-i="'+i+'" type="button">'+(missed?'×':s.done?'✓':s.next?'▶':'→')+'</button><div class="course-head"><div class="muted">'+s.date+'</div><b>'+s.type+(s.done?'<span class="course-completed-tag">✓ 已完成</span>':'')+'</b></div><div class="card timeline-card '+(missed?'missed':s.next?'next-card':s.done?'done-card':'')+'" data-i="'+i+'"><div class="big">'+s.main+'</div><div class="muted">'+s.sub+'</div></div></article>'}).join('');
  const details=sessions.map((s,i)=>({state:labels[i],title:s.date+'｜'+s.type,badge:s.done?'DONE':s.next?'NEXT':'UP NEXT',goal:s.detail?.goal||s.note,rpe:s.detail?.rpe||'依體感控制',segments:s.detail?.segments||[['全程',s.main,s.sub,s.note]],success:s.detail?.success||'穩定完成預定距離。',key:s.detail?.key||s.note}));
+ const resultSafe=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+ function completedCourseHtml(session){
+   const source=session.actual||d.results.find(r=>r.date===session.date&&r.type===session.type);
+   const a=source?{...source,distance:source.distance||source.actual,avgHr:source.avgHr??source.hr}:null;
+   const heading='<div class="row"><div class="label">課程執行成果</div><b class="course-day">已完成</b></div><h2 class="course-title" style="margin-top:8px">'+resultSafe(session.date+' '+session.type)+'</h2>';
+   if(!a)return heading+'<p class="muted" style="margin-top:12px">已完成；目前沒有可顯示的跑步數據。</p>';
+   const hr=a.avgHr==null?'—':String(a.avgHr)+' bpm';
+   const max=a.maxHr==null?'':('／'+String(a.maxHr)+' bpm');
+   const rows=[['實際距離',a.distance||'—'],['總時間',a.time||'—'],['平均配速',a.pace||'—'],['平均／最高心率',a.avgHr==null?'—':hr+max]];
+   const metrics='<div class="course-results-metrics">'+rows.map(([label,value])=>'<div class="course-result-row"><span>'+label+'</span><strong>'+resultSafe(value)+'</strong></div>').join('')+'</div>';
+   const laps=Array.isArray(a.laps)?a.laps:[];
+   const seconds=laps.map(lap=>{const match=String(lap).match(/(\d+):(\d+)(?:\/km)?$/);return match?Number(match[1])*60+Number(match[2]):null});
+   const valid=seconds.filter(x=>x!==null);
+   const low=valid.length?Math.floor(Math.min(...valid)/60)*60:0;
+   const high=valid.length?Math.max(low+60,Math.ceil(Math.max(...valid)/60)*60):60;
+   const splits=laps.length?'<div class="course-split-title">實際分段</div><div class="course-splits">'+laps.map((lap,index)=>{
+     const text=String(lap),match=text.match(/^(\S+)\s+(.+)$/);
+     const distance=match?match[1]:'第 '+(index+1)+' 段';
+     const label=distance==='1K'?'第 '+(index+1)+' K':distance.replace('0.10K','末段 0.1K');
+     const pace=match?match[2]:text;
+     const width=seconds[index]===null?0:Math.round(15+80*(high-seconds[index])/(high-low));
+     return '<div class="course-split"><span>'+resultSafe(label)+'</span><div class="course-split-track"><i style="width:'+width+'%"></i></div><strong>'+resultSafe(pace)+'</strong></div>';
+   }).join('')+'</div><p class="course-split-note">條越長代表配速越快；不足 1K 的末段單獨標示。</p>':'';
+   const analysis=a.analysis?'<div class="course-result-coach"><b>教練判讀</b><p>'+resultSafe(a.analysis)+'</p>'+(a.nextStep?'<p>'+resultSafe(a.nextStep)+'</p>':'')+'</div>':'';
+   return heading+'<p class="course-result-status">'+resultSafe(a.outcome||'已完成')+'</p>'+metrics+splits+analysis;
+ }
+
  let mobileSelected=-1;
  let desktopSelected=-1;
  const mobileCourseDetail=document.getElementById('mobileCourseDetail');
@@ -241,6 +292,14 @@ fetch('data.json?ts='+Date.now()).then(r=>r.json()).then(d=>{const progressPct=d
  }
  if(!isMobile)desktopSelected=i;
  document.querySelectorAll('.timeline-card,.timeline-item').forEach(x=>x.classList.toggle('active',Number(x.dataset.i)===i));
+ if(sessions[i].done){
+   if(isMobile)mobileSelected=i;
+   courseDetail.classList.remove('hidden-detail');
+   courseDetail.classList.add('course-selected');
+   courseDetail.innerHTML=completedCourseHtml(sessions[i]);
+   if(isMobile&&mobileCourseDetail){mobileCourseDetail.innerHTML='<div class="detail course-selected">'+courseDetail.innerHTML+'</div>';mobileCourseDetail.classList.add('open')}
+   return;
+ }
  if(isMobile)mobileSelected=i;const x=details[i],s=sessions[i],days=['TUE','THU','SUN'];const segs=(s.detail&&Array.isArray(s.detail.segments)&&s.detail.segments.length)?s.detail.segments:[['全程',s.main,s.sub,s.note]];courseDetail.classList.remove('hidden-detail');courseDetail.classList.add('course-selected');courseDetail.innerHTML='<div class="row"><div class="label">課程詳情</div><b class="course-day"></b></div><h2 class="course-title" style="margin-top:8px"></h2><p class="muted course-meta" style="margin:8px 0 0"></p><p class="course-key-text" style="margin:14px 0 0;font-size:12px"></p><div class="pace-section" style="margin-top:22px"><div class="row" style="margin-bottom:8px"><b style="font-size:16px">分段配速表</b><span class="muted" style="font-size:11px">原定課表</span></div><div class="pace-table-wrap"><table class="pace-table"><thead><tr><th>階段</th><th>距離</th><th>目標配速</th><th>執行重點</th></tr></thead><tbody id="activeSegmentBody"></tbody></table></div></div>';courseDetail.querySelector('.course-day').textContent=days[i];courseDetail.querySelector('.course-title').textContent=s.date+' '+s.type+' '+s.main;courseDetail.querySelector('.course-meta').textContent=s.sub+' · '+x.rpe;courseDetail.querySelector('.course-key-text').innerHTML='<b>重點：</b>'+(s.note||x.key);const tbody=courseDetail.querySelector('#activeSegmentBody');segs.forEach(a=>{const tr=document.createElement('tr');a.forEach(v=>{const td=document.createElement('td');td.textContent=v;tr.appendChild(td)});tbody.appendChild(tr)});if(isMobile&&mobileCourseDetail){mobileCourseDetail.innerHTML='<div class="detail course-selected">'+courseDetail.innerHTML+'</div>';mobileCourseDetail.classList.add('open')}} document.querySelectorAll('.timeline-item').forEach((x,i)=>{x.dataset.i=i;x.addEventListener('click',()=>selectCourse(i));x.setAttribute('tabindex','0');x.setAttribute('role','button');x.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectCourse(i)}})});if(window.matchMedia('(min-width:761px)').matches){document.querySelectorAll('.timeline-card,.timeline-node').forEach(x=>x.classList.remove('active'));courseDetail.classList.remove('hidden-detail');courseDetail.classList.remove('course-selected');courseDetail.innerHTML='<div class="detail-empty"><b>課程詳情</b><p class="muted" style="margin-top:8px">點擊左側任一堂課，查看課程內容與分段配速表。</p></div>'}
  planBody.innerHTML=d.plan.map(p=>'<tr class="'+(p.week===d.currentWeek?'currentrow':'')+'"><td><b>'+p.week+'</b></td><td>'+p.range+'</td><td>'+p.tue+'</td><td>'+p.thu+'</td><td>'+p.sun+'</td><td><b>'+p.volume+'</b></td><td>'+p.focus+'</td></tr>').join('');const wv=d.weekVolume,pv=Math.round(wv.completed/((wv.targetMin+wv.targetMax)/2)*100);if(typeof weeklyTarget!=='undefined')weeklyTarget.textContent='本週目標 '+wv.targetMin+'–'+wv.targetMax+'K';document.getElementById('mobileWeekKm').textContent=wv.completed.toFixed(2)+' / '+wv.targetMin+'–'+wv.targetMax+'K';document.getElementById('mobileWeekSessions').textContent='已完成 '+wv.completedSessions+' / '+wv.totalSessions+' 堂';document.getElementById('mobileWeekProgress').value=Math.min(100,Math.max(0,pv));if(typeof desktopWeekPct!=='undefined'){desktopWeekPct.textContent=pv+'%';desktopWeekFill.style.width=Math.min(100,pv)+'%';desktopWeekKm.textContent='已完成 '+wv.completed.toFixed(2)+'K';desktopWeekSessions.textContent=wv.completedSessions+' / '+wv.totalSessions+' 堂';desktopWeekStrategy.textContent=d.currentWeek===4?'上週完成 '+(d.lastCompletedWeek?.completed||0).toFixed(2)+'K，本週把總量降回 '+wv.targetMin+'–'+wv.targetMax+'K，拉開快跑與慢跑的強度差，為 W5 的 8K 長跑做準備。':(d.coach?.milestone||'依本週完成狀況動態調整。')}weekRing.style.setProperty('--p',pv);weekPct.textContent=pv+'%';weekVolumeText.textContent=wv.completed.toFixed(2)+' / '+wv.targetMin+'–'+wv.targetMax+' KM';weekVolumeSub.textContent='已完成 '+wv.completed.toFixed(2)+'K ｜ 本週預計 '+wv.targetMin+'–'+wv.targetMax+'K ｜ '+wv.completedSessions+' / '+wv.totalSessions+' 堂';
  resultWeek.textContent='累積顯示所有已完成跑步';
