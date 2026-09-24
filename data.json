@@ -1,6 +1,5 @@
 {
   "updated": "2026-09-22",
-  "longest": 6.6,
   "goalStatus": "🟡 進展中",
   "goalNote": "品質段最快 7:13/km；目前重點是把接近 7:03/km 的能力逐步延伸到更長距離",
   "currentWeek": 4,
@@ -12,8 +11,6 @@
       "main": "3–4K",
       "sub": "建議 8:20–8:40/km",
       "note": "恢復週第一堂，刻意放慢；不要把輕鬆跑變成漸進跑。",
-      "done": true,
-      "next": false,
       "detail": {
         "goal": "恢復並累積低強度有氧。",
         "rpe": "RPE 4–5｜可對話",
@@ -28,23 +25,8 @@
         "success": "完成後仍有餘裕，隔天無明顯疲勞。",
         "key": "這堂的進步是跑得更輕鬆，不是跑得更快。"
       },
-      "actual": {
-        "distance": "4.10K",
-        "time": "34:42.5",
-        "pace": "8:27/km",
-        "avgHr": 160,
-        "maxHr": 170,
-        "laps": [
-          "1K 8:35",
-          "1K 8:28",
-          "1K 8:20",
-          "1K 8:26",
-          "0.10K 8:47/km"
-        ],
-        "outcome": "🟢 輕鬆跑達標",
-        "analysis": "四個完整公里皆在原訂 8:20–8:40/km 範圍內，末段沒有持續加速；恢復跑執行良好。",
-        "nextStep": "下一堂 9/24 品質跑維持 3K，本週不加量。"
-      }
+      "id": "w4-tue",
+      "dateISO": "2026-09-22"
     },
     {
       "date": "9/24（四）",
@@ -52,8 +34,6 @@
       "main": "3K",
       "sub": "恢復週品質刺激，不加量",
       "note": "保留速度感，但降低總負荷。",
-      "done": false,
-      "next": true,
       "detail": {
         "goal": "維持品質跑節奏，同時讓本週總負荷下降。",
         "rpe": "RPE 約 6｜控制得住的快",
@@ -79,7 +59,9 @@
         ],
         "success": "品質段穩定、收操確實放慢。",
         "key": "本週不需要突破 7:13；重點是快慢分明。"
-      }
+      },
+      "id": "w4-thu",
+      "dateISO": "2026-09-24"
     },
     {
       "date": "9/27（日）",
@@ -87,8 +69,6 @@
       "main": "5K",
       "sub": "建議 8:20–8:40/km",
       "note": "恢復週縮短距離，維持低強度耐力。",
-      "done": false,
-      "next": false,
       "detail": {
         "goal": "降低週跑量，同時保留長跑習慣。",
         "rpe": "RPE 4–5｜可對話",
@@ -114,7 +94,9 @@
         ],
         "success": "5K 穩定完成，後段不刻意加速。",
         "key": "恢復週是為 W5 的 8K 做準備。"
-      }
+      },
+      "id": "w4-sun",
+      "dateISO": "2026-09-27"
     }
   ],
   "results": [
@@ -127,7 +109,10 @@
       "hr": "153",
       "outcome": "🟢 輕鬆跑達標",
       "attention": false,
-      "source": "Garmin Connect 截圖補登"
+      "source": "Garmin Connect 截圖補登",
+      "dateISO": "2026-09-01",
+      "distanceKm": 3.22,
+      "sessionId": "w1-tue"
     },
     {
       "date": "9/9（三）",
@@ -140,7 +125,11 @@
       "attention": false,
       "source": "Garmin Connect 截圖補登",
       "scheduledDate": "9/8（二）",
-      "rescheduled": true
+      "rescheduled": true,
+      "dateISO": "2026-09-09",
+      "distanceKm": 4.02,
+      "scheduledDateISO": "2026-09-08",
+      "sessionId": "w2-tue"
     },
     {
       "date": "9/10（四）",
@@ -157,7 +146,10 @@
         "1K 7:46",
         "1K 7:36",
         "0.11K 7:54/km"
-      ]
+      ],
+      "dateISO": "2026-09-10",
+      "distanceKm": 3.11,
+      "sessionId": "w2-thu"
     },
     {
       "date": "9/15（二）",
@@ -167,7 +159,10 @@
       "pace": "7:59",
       "hr": "168",
       "outcome": "🟡 強度偏高",
-      "attention": true
+      "attention": true,
+      "dateISO": "2026-09-15",
+      "distanceKm": 5.21,
+      "sessionId": "w3-tue"
     },
     {
       "date": "9/19（六）",
@@ -179,7 +174,11 @@
       "outcome": "🟢 品質課表達標",
       "attention": false,
       "scheduledDate": "9/17（四）",
-      "rescheduled": true
+      "rescheduled": true,
+      "dateISO": "2026-09-19",
+      "distanceKm": 4.02,
+      "scheduledDateISO": "2026-09-17",
+      "sessionId": "w3-thu"
     },
     {
       "date": "9/20（日）",
@@ -189,7 +188,10 @@
       "pace": "8:11",
       "hr": "163",
       "outcome": "🟢 耐力達標／🟡 配速偏快",
-      "attention": true
+      "attention": true,
+      "dateISO": "2026-09-20",
+      "distanceKm": 6.6,
+      "sessionId": "w3-sun"
     },
     {
       "date": "9/22（二）",
@@ -209,7 +211,12 @@
         "1K 8:20",
         "1K 8:26",
         "0.10K 8:47/km"
-      ]
+      ],
+      "dateISO": "2026-09-22",
+      "distanceKm": 4.1,
+      "sessionId": "w4-tue",
+      "analysis": "四個完整公里皆在原訂 8:20–8:40/km 範圍內，末段沒有持續加速；恢復跑執行良好。",
+      "nextStep": "下一堂 9/24 品質跑維持 3K，本週不加量。"
     }
   ],
   "coach": {
@@ -226,7 +233,36 @@
       "thu": "品質 3K",
       "sun": "5K",
       "focus": "建立習慣",
-      "volume": "11K"
+      "volume": "11K",
+      "sessions": [
+        {
+          "id": "w1-tue",
+          "dateISO": "2026-09-01",
+          "type": "輕鬆跑",
+          "label": "3K",
+          "minKm": 3,
+          "maxKm": 3,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w1-thu",
+          "dateISO": "2026-09-03",
+          "type": "品質跑",
+          "label": "3K",
+          "minKm": 3,
+          "maxKm": 3,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w1-sun",
+          "dateISO": "2026-09-06",
+          "type": "長跑",
+          "label": "5K",
+          "minKm": 5,
+          "maxKm": 5,
+          "distanceUnknown": false
+        }
+      ]
     },
     {
       "week": 2,
@@ -235,7 +271,36 @@
       "thu": "品質 3K",
       "sun": "6K",
       "focus": "穩定跑量",
-      "volume": "12K"
+      "volume": "12K",
+      "sessions": [
+        {
+          "id": "w2-tue",
+          "dateISO": "2026-09-08",
+          "type": "輕鬆跑",
+          "label": "3K",
+          "minKm": 3,
+          "maxKm": 3,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w2-thu",
+          "dateISO": "2026-09-10",
+          "type": "品質跑",
+          "label": "3K",
+          "minKm": 3,
+          "maxKm": 3,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w2-sun",
+          "dateISO": "2026-09-13",
+          "type": "長跑",
+          "label": "6K",
+          "minKm": 6,
+          "maxKm": 6,
+          "distanceUnknown": false
+        }
+      ]
     },
     {
       "week": 3,
@@ -244,7 +309,36 @@
       "thu": "品質 3–4K",
       "sun": "6K",
       "focus": "依 Garmin 控制強度",
-      "volume": "12–13K"
+      "volume": "12–13K",
+      "sessions": [
+        {
+          "id": "w3-tue",
+          "dateISO": "2026-09-15",
+          "type": "輕鬆跑",
+          "label": "3K",
+          "minKm": 3,
+          "maxKm": 3,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w3-thu",
+          "dateISO": "2026-09-17",
+          "type": "品質跑",
+          "label": "3–4K",
+          "minKm": 3,
+          "maxKm": 4,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w3-sun",
+          "dateISO": "2026-09-20",
+          "type": "長跑",
+          "label": "6K",
+          "minKm": 6,
+          "maxKm": 6,
+          "distanceUnknown": false
+        }
+      ]
     },
     {
       "week": 4,
@@ -253,7 +347,36 @@
       "thu": "節奏 3K",
       "sun": "5K",
       "focus": "恢復週",
-      "volume": "11–12K"
+      "volume": "11–12K",
+      "sessions": [
+        {
+          "id": "w4-tue",
+          "dateISO": "2026-09-22",
+          "type": "輕鬆跑",
+          "label": "3–4K",
+          "minKm": 3,
+          "maxKm": 4,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w4-thu",
+          "dateISO": "2026-09-24",
+          "type": "品質跑",
+          "label": "3K",
+          "minKm": 3,
+          "maxKm": 3,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w4-sun",
+          "dateISO": "2026-09-27",
+          "type": "長跑",
+          "label": "5K",
+          "minKm": 5,
+          "maxKm": 5,
+          "distanceUnknown": false
+        }
+      ]
     },
     {
       "week": 5,
@@ -262,7 +385,36 @@
       "thu": "品質 4K",
       "sun": "8K",
       "focus": "進入耐力期",
-      "volume": "16K"
+      "volume": "16K",
+      "sessions": [
+        {
+          "id": "w5-tue",
+          "dateISO": "2026-09-29",
+          "type": "輕鬆跑",
+          "label": "4K",
+          "minKm": 4,
+          "maxKm": 4,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w5-thu",
+          "dateISO": "2026-10-01",
+          "type": "品質跑",
+          "label": "4K",
+          "minKm": 4,
+          "maxKm": 4,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w5-sun",
+          "dateISO": "2026-10-04",
+          "type": "長跑",
+          "label": "8K",
+          "minKm": 8,
+          "maxKm": 8,
+          "distanceUnknown": false
+        }
+      ]
     },
     {
       "week": 6,
@@ -271,7 +423,36 @@
       "thu": "品質 4K",
       "sun": "9K",
       "focus": "延長時間",
-      "volume": "17K"
+      "volume": "17K",
+      "sessions": [
+        {
+          "id": "w6-tue",
+          "dateISO": "2026-10-06",
+          "type": "輕鬆跑",
+          "label": "4K",
+          "minKm": 4,
+          "maxKm": 4,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w6-thu",
+          "dateISO": "2026-10-08",
+          "type": "品質跑",
+          "label": "4K",
+          "minKm": 4,
+          "maxKm": 4,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w6-sun",
+          "dateISO": "2026-10-11",
+          "type": "長跑",
+          "label": "9K",
+          "minKm": 9,
+          "maxKm": 9,
+          "distanceUnknown": false
+        }
+      ]
     },
     {
       "week": 7,
@@ -280,7 +461,36 @@
       "thu": "節奏 4K",
       "sun": "10K",
       "focus": "首次雙位數",
-      "volume": "18–19K"
+      "volume": "18–19K",
+      "sessions": [
+        {
+          "id": "w7-tue",
+          "dateISO": "2026-10-13",
+          "type": "輕鬆跑",
+          "label": "4–5K",
+          "minKm": 4,
+          "maxKm": 5,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w7-thu",
+          "dateISO": "2026-10-15",
+          "type": "品質跑",
+          "label": "4K",
+          "minKm": 4,
+          "maxKm": 4,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w7-sun",
+          "dateISO": "2026-10-18",
+          "type": "長跑",
+          "label": "10K",
+          "minKm": 10,
+          "maxKm": 10,
+          "distanceUnknown": false
+        }
+      ]
     },
     {
       "week": 8,
@@ -289,7 +499,36 @@
       "thu": "品質 4K",
       "sun": "8K",
       "focus": "恢復週",
-      "volume": "16K"
+      "volume": "16K",
+      "sessions": [
+        {
+          "id": "w8-tue",
+          "dateISO": "2026-10-20",
+          "type": "輕鬆跑",
+          "label": "4K",
+          "minKm": 4,
+          "maxKm": 4,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w8-thu",
+          "dateISO": "2026-10-22",
+          "type": "品質跑",
+          "label": "4K",
+          "minKm": 4,
+          "maxKm": 4,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w8-sun",
+          "dateISO": "2026-10-25",
+          "type": "長跑",
+          "label": "8K",
+          "minKm": 8,
+          "maxKm": 8,
+          "distanceUnknown": false
+        }
+      ]
     },
     {
       "week": 9,
@@ -298,7 +537,36 @@
       "thu": "節奏 4–5K",
       "sun": "11K",
       "focus": "耐力提升",
-      "volume": "20–21K"
+      "volume": "20–21K",
+      "sessions": [
+        {
+          "id": "w9-tue",
+          "dateISO": "2026-10-27",
+          "type": "輕鬆跑",
+          "label": "5K",
+          "minKm": 5,
+          "maxKm": 5,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w9-thu",
+          "dateISO": "2026-10-29",
+          "type": "品質跑",
+          "label": "4–5K",
+          "minKm": 4,
+          "maxKm": 5,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w9-sun",
+          "dateISO": "2026-11-01",
+          "type": "長跑",
+          "label": "11K",
+          "minKm": 11,
+          "maxKm": 11,
+          "distanceUnknown": false
+        }
+      ]
     },
     {
       "week": 10,
@@ -307,7 +575,36 @@
       "thu": "品質 5K",
       "sun": "12K",
       "focus": "穩定長跑",
-      "volume": "22K"
+      "volume": "22K",
+      "sessions": [
+        {
+          "id": "w10-tue",
+          "dateISO": "2026-11-03",
+          "type": "輕鬆跑",
+          "label": "5K",
+          "minKm": 5,
+          "maxKm": 5,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w10-thu",
+          "dateISO": "2026-11-05",
+          "type": "品質跑",
+          "label": "5K",
+          "minKm": 5,
+          "maxKm": 5,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w10-sun",
+          "dateISO": "2026-11-08",
+          "type": "長跑",
+          "label": "12K",
+          "minKm": 12,
+          "maxKm": 12,
+          "distanceUnknown": false
+        }
+      ]
     },
     {
       "week": 11,
@@ -316,7 +613,36 @@
       "thu": "節奏 5K",
       "sun": "14K",
       "focus": "關鍵耐力檢查",
-      "volume": "24K"
+      "volume": "24K",
+      "sessions": [
+        {
+          "id": "w11-tue",
+          "dateISO": "2026-11-10",
+          "type": "輕鬆跑",
+          "label": "5K",
+          "minKm": 5,
+          "maxKm": 5,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w11-thu",
+          "dateISO": "2026-11-12",
+          "type": "品質跑",
+          "label": "5K",
+          "minKm": 5,
+          "maxKm": 5,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w11-sun",
+          "dateISO": "2026-11-15",
+          "type": "長跑",
+          "label": "14K",
+          "minKm": 14,
+          "maxKm": 14,
+          "distanceUnknown": false
+        }
+      ]
     },
     {
       "week": 12,
@@ -325,7 +651,36 @@
       "thu": "品質 4K",
       "sun": "11K",
       "focus": "恢復週",
-      "volume": "19–20K"
+      "volume": "19–20K",
+      "sessions": [
+        {
+          "id": "w12-tue",
+          "dateISO": "2026-11-17",
+          "type": "輕鬆跑",
+          "label": "4–5K",
+          "minKm": 4,
+          "maxKm": 5,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w12-thu",
+          "dateISO": "2026-11-19",
+          "type": "品質跑",
+          "label": "4K",
+          "minKm": 4,
+          "maxKm": 4,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w12-sun",
+          "dateISO": "2026-11-22",
+          "type": "長跑",
+          "label": "11K",
+          "minKm": 11,
+          "maxKm": 11,
+          "distanceUnknown": false
+        }
+      ]
     },
     {
       "week": 13,
@@ -334,7 +689,36 @@
       "thu": "品質 5K",
       "sun": "15K",
       "focus": "最終驗證週",
-      "volume": "25K"
+      "volume": "25K",
+      "sessions": [
+        {
+          "id": "w13-tue",
+          "dateISO": "2026-11-24",
+          "type": "輕鬆跑",
+          "label": "5K",
+          "minKm": 5,
+          "maxKm": 5,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w13-thu",
+          "dateISO": "2026-11-26",
+          "type": "品質跑",
+          "label": "5K",
+          "minKm": 5,
+          "maxKm": 5,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w13-sun",
+          "dateISO": "2026-11-29",
+          "type": "長跑",
+          "label": "15K",
+          "minKm": 15,
+          "maxKm": 15,
+          "distanceUnknown": false
+        }
+      ]
     },
     {
       "week": 14,
@@ -343,7 +727,36 @@
       "thu": "短節奏 3K",
       "sun": "8–10K",
       "focus": "Taper",
-      "volume": "15–17K"
+      "volume": "15–17K",
+      "sessions": [
+        {
+          "id": "w14-tue",
+          "dateISO": "2026-12-01",
+          "type": "輕鬆跑",
+          "label": "4K",
+          "minKm": 4,
+          "maxKm": 4,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w14-thu",
+          "dateISO": "2026-12-03",
+          "type": "品質跑",
+          "label": "3K",
+          "minKm": 3,
+          "maxKm": 3,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w14-sun",
+          "dateISO": "2026-12-06",
+          "type": "長跑",
+          "label": "8–10K",
+          "minKm": 8,
+          "maxKm": 10,
+          "distanceUnknown": false
+        }
+      ]
     },
     {
       "week": 15,
@@ -352,16 +765,38 @@
       "thu": "短跑＋休息",
       "sun": "17K 比賽",
       "focus": "Race Week",
-      "volume": "約 22–23K"
+      "volume": "約 22–23K",
+      "sessions": [
+        {
+          "id": "w15-tue",
+          "dateISO": "2026-12-08",
+          "type": "輕鬆跑",
+          "label": "3K",
+          "minKm": 3,
+          "maxKm": 3,
+          "distanceUnknown": false
+        },
+        {
+          "id": "w15-thu",
+          "dateISO": "2026-12-10",
+          "type": "短跑／休息",
+          "label": "短跑＋休息",
+          "minKm": 0,
+          "maxKm": 0,
+          "distanceUnknown": true
+        },
+        {
+          "id": "w15-sun",
+          "dateISO": "2026-12-13",
+          "type": "比賽",
+          "label": "17K",
+          "minKm": 17,
+          "maxKm": 17,
+          "distanceUnknown": false
+        }
+      ]
     }
   ],
-  "weekVolume": {
-    "completed": 4.1,
-    "targetMin": 11,
-    "targetMax": 12,
-    "completedSessions": 1,
-    "totalSessions": 3
-  },
   "lastWeek": {
     "week": 3,
     "completed": 15.83,
@@ -401,14 +836,8 @@
     },
     "note": "進度依接近 7:03/km 的速度能力、可持續距離與完成穩定度綜合評估；不以單一最快 1K 直接代表 17K 比賽能力。"
   },
-  "lastCompletedWeek": {
-    "week": 3,
-    "range": "9/14–9/20",
-    "completed": 15.83,
-    "targetMin": 12,
-    "targetMax": 13,
-    "completedSessions": 3,
-    "totalSessions": 3
-  },
-  "totalDistance": 30.28
+  "planStart": "2026-08-31",
+  "raceDate": "2026-12-13",
+  "timeZone": "Asia/Taipei",
+  "raceDistanceKm": 17
 }

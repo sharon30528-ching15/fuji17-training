@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {monthStats,buildState,validateData,todayISO,dateValue,percent} from './model.mjs';
+const source=JSON.parse(fs.readFileSync(new URL('./data.json',import.meta.url)));
+const clone=()=>structuredClone(source);
+const d=clone();d.results.push({dateISO:'2026-10-01',distanceKm:4,type:'品質跑',sessionId:'w5-thu'});
+assert.equal(monthStats(d,'2026-09').km,30.28);
+assert.equal(monthStats(d,'2026-10').km,4);
+assert.equal(buildState(source,'2026-09-24').km,4.1);
+assert.equal(buildState(source,'2026-09-24').completed,1);
+assert.equal(buildState(source,'2026-09-24').longest,6.6);
+assert.equal(buildState(source,'2026-09-24').totalKm,30.28);
+assert.equal(buildState(source,'2026-09-28').week,5);
+assert.equal(buildState(source,'2026-10-01').sessions[2].type,'長跑');
+assert.equal(buildState(source,'2026-12-13').sessions[2].type,'比賽');
+assert.equal(buildState(source,'2026-09-10').completed,2); // rescheduled 9/8 run completed on 9/9
+assert.equal(buildState(source,'2026-09-20').completed,3);
+assert.equal(buildState(source,'2026-08-01').before,true);
+assert.equal(buildState(source,'2027-01-01').after,true);
+assert.equal(todayISO(new Date('2026-09-27T16:00:00Z')),'2026-09-28');
+assert.equal(percent(10,0),0);assert.equal(percent(30,20),100);
+assert.throws(()=>dateValue('2026-02-30'));
+const bad=clone();bad.results[0].distanceKm='oops';assert.throws(()=>validateData(bad));
+console.log('18 checks passed: month boundaries, rescheduling, week rollover, race labels, timezone, validation.');
