@@ -9,13 +9,13 @@
   "theme_color": "#142247",
   "icons": [
     {
-      "src": "./icons/fuji17-192-v1.png",
+      "src": "./icons/fuji17-192-v2.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "./icons/fuji17-512-v1.png",
+      "src": "./icons/fuji17-512-v2.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
