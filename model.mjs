@@ -42,7 +42,8 @@ export const resultForSession = (d,s) => d.results.find(r => r.sessionId === s.i
 export function monthStats(d, key) {
   const rows = d.results.filter(r=>r.dateISO.startsWith(key+'-'));
   const sessions = d.plan.flatMap(p=>p.sessions).filter(s=>s.dateISO.startsWith(key+'-'));
-  return {km:sumKm(rows),count:rows.length,min:sessions.reduce((n,s)=>n+s.minKm,0),max:sessions.reduce((n,s)=>n+s.maxKm,0),unknown:sessions.some(s=>s.distanceUnknown)};
+  const plannedOrActual=(s,bound)=>resultForSession(d,s)?.distanceKm ?? s[bound];
+  return {km:sumKm(rows),count:rows.length,min:sessions.reduce((n,s)=>n+plannedOrActual(s,'minKm'),0),max:sessions.reduce((n,s)=>n+plannedOrActual(s,'maxKm'),0),unknown:sessions.some(s=>s.distanceUnknown)};
 }
 export function buildState(d, today = todayISO(new Date(), d.timeZone)) {
   validateData(d); dateValue(today);
@@ -54,6 +55,6 @@ export function buildState(d, today = todayISO(new Date(), d.timeZone)) {
     return {...s,main:s.label,sub:detail?.sub || '依課表與當週狀態安排',note:detail?.note || plan.focus,detail:detail?.detail,result,actual:result,done:!!result};
   });
   const next = sessions.find(s=>!s.done && s.dateISO>=today);
-  return {week,plan,start,end,today,sessions:sessions.map(s=>({...s,next:s===next})),km:sumKm(resultsInRange(d,start,end)),completed:sessions.filter(s=>s.done).length,total:sessions.length,min:sessions.reduce((n,s)=>n+s.minKm,0),max:sessions.reduce((n,s)=>n+s.maxKm,0),longest:Math.max(0,...d.results.map(r=>r.distanceKm)),totalKm:sumKm(d.results),before:today<d.planStart,after:today>d.raceDate};
+  return {week,plan,start,end,today,sessions:sessions.map(s=>({...s,next:s===next})),km:sumKm(resultsInRange(d,start,end)),completed:sessions.filter(s=>s.done).length,total:sessions.length,min:sessions.reduce((n,s)=>n+(s.result?.distanceKm ?? s.minKm),0),max:sessions.reduce((n,s)=>n+(s.result?.distanceKm ?? s.maxKm),0),longest:Math.max(0,...d.results.map(r=>r.distanceKm)),totalKm:sumKm(d.results),before:today<d.planStart,after:today>d.raceDate};
 }
 export const percent = (value,target) => target > 0 ? Math.max(0,Math.min(100,Math.round(value/target*100))) : 0;
