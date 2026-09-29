@@ -66,7 +66,7 @@ function render() {
   text('weekVolumeSub',`已完成 ${state.km.toFixed(2)}K ｜ 本週預計 ${goal} ｜ ${state.completed} / ${state.total} 堂`);
   const strategy=document.querySelector('.weekly-strategy');strategy.querySelector('.label').textContent=`W${state.week} 訓練策略`;strategy.querySelector('b').textContent=state.plan.focus;
   const lastWeekKm=sumKm(resultsInRange(data,addDays(state.start,-7),state.start));
-  text('desktopWeekStrategy',state.week===4?`上週完成 ${lastWeekKm.toFixed(2)}K，本週總量 ${goal}；${state.plan.focus}，為下一階段做準備。`:`本週預計 ${goal}，重點：${state.plan.focus}。`);
+  text('desktopWeekStrategy',state.plan.strategy || (state.week===4?`上週完成 ${lastWeekKm.toFixed(2)}K，本週總量 ${goal}；${state.plan.focus}，為下一階段做準備。`:`本週預計 ${goal}，重點：${state.plan.focus}。`));
   renderCards();renderDetail();renderPlan();renderCalendar();renderResults();text('updated','最後更新：'+data.updated);
 }
 function renderCards(){
