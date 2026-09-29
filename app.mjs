@@ -81,7 +81,10 @@ function renderCards(){
   });$('weekCards').replaceChildren(...nodes);
 }
 function completedDetail(s){
-  const r=s.result,box=el('div');box.append(el('div','label','課程執行成果'),el('h2','course-title',`${shortDate(r.dateISO)} ${r.type}`),el('p','course-result-status',r.outcome || '已完成'));
+  const r=s.result,box=el('div');box.append(el('div','label','課程執行成果'),el('h2','course-title',`${shortDate(r.dateISO)} ${r.type}`));
+  if(r.scheduledDateISO && r.scheduledDateISO!==r.dateISO)box.append(el('p','muted',`原定 ${shortDate(r.scheduledDateISO)}・實跑 ${shortDate(r.dateISO)}`));
+  if(r.device)box.append(el('p','muted',`Garmin ${r.device}`));
+  box.append(el('p','course-result-status',r.outcome || '已完成'));
   const metrics=el('div','course-results-metrics');
   [['實際距離',`${r.distanceKm.toFixed(2)}K`],['總時間',r.time || '—'],['平均配速',r.pace?pace(r.pace)+'/km':'—'],['平均／最高心率',`${r.hr || r.avgHr || '—'} / ${r.maxHr || '—'} bpm`]].forEach(([label,value])=>{const row=el('div','course-result-row');row.append(el('span','',label),el('strong','',value));metrics.append(row);});box.append(metrics);
   if(r.laps?.length){
@@ -108,7 +111,7 @@ function renderDetail(){
   const copy=el('div','detail course-selected');copy.append(content.cloneNode(true));mobile.replaceChildren(copy);
 }
 function renderPlan(){
-  $('planBody').replaceChildren(...data.plan.map(p=>{const tr=el('tr',p.week===state.week?'currentrow':'');[p.week,p.range,...p.sessions.map(s=>`${s.type} ${s.label}`),p.volume,p.focus].forEach(v=>tr.append(el('td','',v)));return tr;}));
+  $('planBody').replaceChildren(...data.plan.map(p=>{const tr=el('tr',p.week===state.week?'currentrow':'');[p.week,p.range,...p.sessions.map(s=>`${s.type} ${s.label}`),p.week===state.week?`${target(state.min,state.max)}（動態）`:p.volume,p.focus].forEach(v=>tr.append(el('td','',v)));return tr;}));
 }
 function renderResults(){
   text('resultWeek',`累積 ${data.results.length} 次，${state.totalKm.toFixed(2)}K`);
