@@ -41,4 +41,4 @@ https://sharon30528-ching15.github.io/fuji17-training/
 
 ## 動態課表原則
 
-所有課表維護遵守 [TRAINING_POLICY.md](TRAINING_POLICY.md)。`data.json.trainingPolicy` 提供網站顯示的規則；每週檢視歷程記錄在 `trainingReviews`。預定每週一台灣時間 12:00 檢視；自動排程尚未啟用，網站本身不直接同步 Garmin 或執行 AI 評估。
+所有課表維護遵守 [TRAINING_POLICY.md](TRAINING_POLICY.md)。`data.json.trainingPolicy` 提供網站顯示的規則；每週檢視歷程記錄在 `trainingReviews`。每週一台灣時間 12:00 由 Codex 自動排程檢視（已啟用），網站本身不直接同步 Garmin 或執行 AI 評估。
