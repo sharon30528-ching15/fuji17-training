@@ -39,6 +39,12 @@ export function validateData(d) {
 export const sumKm = rows => Math.round(rows.reduce((n,r)=>n+r.distanceKm,0)*100)/100;
 export const resultsInRange = (d,start,end) => d.results.filter(r=>r.dateISO>=start && r.dateISO<end);
 export const resultForSession = (d,s) => d.results.find(r => r.sessionId === s.id || (!r.sessionId && (r.scheduledDateISO || r.dateISO) === s.dateISO && r.type === s.type));
+export function sessionStatus(d,s,today) {
+  if(resultForSession(d,s))return 'recorded';
+  const latest=d.results.reduce((last,r)=>r.dateISO>last?r.dateISO:last,'');
+  if(s.dateISO<latest)return 'incomplete';
+  return s.dateISO<today?'pending':'planned';
+}
 export function monthStats(d, key) {
   const rows = d.results.filter(r=>r.dateISO.startsWith(key+'-'));
   const sessions = d.plan.flatMap(p=>p.sessions).filter(s=>s.dateISO.startsWith(key+'-'));
@@ -52,7 +58,7 @@ export function buildState(d, today = todayISO(new Date(), d.timeZone)) {
   const sessions = plan.sessions.map(s => {
     const detail = d.weekSessions.find(x=>x.id===s.id);
     const result = resultForSession(d,s);
-    return {...s,main:s.label,sub:detail?.sub || '依課表與當週狀態安排',note:detail?.note || plan.focus,detail:detail?.detail,result,actual:result,done:!!result};
+    return {...s,status:sessionStatus(d,s,today),main:s.label,sub:detail?.sub || '依課表與當週狀態安排',note:detail?.note || plan.focus,detail:detail?.detail,result,actual:result,done:!!result};
   });
   const next = sessions.find(s=>!s.done && s.dateISO>=today);
   return {week,plan,start,end,today,sessions:sessions.map(s=>({...s,next:s===next})),km:sumKm(resultsInRange(d,start,end)),completed:sessions.filter(s=>s.done).length,total:sessions.length,min:sessions.reduce((n,s)=>n+(s.result?.distanceKm ?? s.minKm),0),max:sessions.reduce((n,s)=>n+(s.result?.distanceKm ?? s.maxKm),0),longest:Math.max(0,...d.results.map(r=>r.distanceKm)),totalKm:sumKm(d.results),before:today<d.planStart,after:today>d.raceDate};

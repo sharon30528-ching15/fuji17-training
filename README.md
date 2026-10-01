@@ -38,3 +38,7 @@ https://sharon30528-ching15.github.io/fuji17-training/
 
 成功讀取且驗證的資料會保存於此瀏覽器 localStorage。後續資料請求失敗會顯示備份日期及重新載入按鈕。這是資料備援，尚未加入 Service Worker，因此不保證完全離線時首次開啟網站。無法使用本機儲存時，線上功能仍可使用。
 
+
+## 動態課表原則
+
+所有課表維護遵守 [TRAINING_POLICY.md](TRAINING_POLICY.md)。`data.json.trainingPolicy` 提供網站顯示的規則；每週檢視歷程記錄在 `trainingReviews`。預定每週一台灣時間 12:00 檢視；自動排程尚未啟用，網站本身不直接同步 Garmin 或執行 AI 評估。

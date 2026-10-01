@@ -1,4 +1,4 @@
-import {DAY,dateValue,addDays,todayISO,shortDate,validateData,monthStats,buildState,percent,sumKm,resultsInRange} from './model.mjs';
+import {DAY,dateValue,addDays,todayISO,shortDate,validateData,monthStats,buildState,percent,sumKm,resultsInRange,sessionStatus} from './model.mjs?v=20261001-policy2';
 
 const $ = id => document.getElementById(id);
 const text = (id,value) => {if ($(id)) $(id).textContent=value;};
@@ -67,14 +67,24 @@ function render() {
   const strategy=document.querySelector('.weekly-strategy');strategy.querySelector('.label').textContent=`W${state.week} 訓練策略`;strategy.querySelector('b').textContent=state.plan.focus;
   const lastWeekKm=sumKm(resultsInRange(data,addDays(state.start,-7),state.start));
   text('desktopWeekStrategy',state.plan.strategy || (state.week===4?`上週完成 ${lastWeekKm.toFixed(2)}K，本週總量 ${goal}；${state.plan.focus}，為下一階段做準備。`:`本週預計 ${goal}，重點：${state.plan.focus}。`));
-  renderCards();renderDetail();renderPlan();renderCalendar();renderResults();text('updated','最後更新：'+data.updated);
+  renderPolicy();renderCards();renderDetail();renderPlan();renderCalendar();renderResults();text('updated','最後更新：'+data.updated);
+}
+function renderPolicy(){
+  const host=$('trainingPolicy'),p=data.trainingPolicy;
+  if(!p){host.hidden=true;return;}host.hidden=false;
+  const details=el('details'),summary=el('summary','',p.principle);
+  details.append(summary,el('p','',p.workflow.join(' → ')),
+    el('p','','漏掉的課不自動補跑，也不將後續整份課表往後延。只有出現'+p.adjustmentTriggers.join('、')+'，才依證據調低下一堂距離／強度。'),
+    el('p','',p.goal),el('p','','定期檢視：'+p.reviewSchedule),
+    el('p','muted',p.dataSourceNote));
+  host.replaceChildren(el('h2','',p.title),details);
 }
 function renderCards(){
   const nodes=state.sessions.map(s=>{
     const b=el('article','timeline-item');b.tabIndex=0;b.setAttribute('role','button');b.setAttribute('aria-expanded',String(selected===s.id));
     b.classList.toggle('active',selected===s.id);
     const head=el('div','course-head');head.append(el('div','muted',shortDate(s.dateISO)));
-    const title=el('b','',s.type);if(s.done)title.append(el('span','course-completed-tag','✓ 已完成'));head.append(title);
+    const title=el('b','',s.type);if(s.done)title.append(el('span','course-completed-tag','✓ 已完成'));else if(s.status==='incomplete')title.append(el('span','course-completed-tag','未完成'));else if(s.status==='pending')title.append(el('span','course-completed-tag','待確認'));head.append(title);
     const card=el('div','card timeline-card');card.append(el('div','big',s.main),el('div','muted',s.sub));b.append(head,card);
     const choose=()=>{selected=selected===s.id?null:s.id;renderCards();renderDetail();const newCard=$('weekCards').children[state.sessions.indexOf(s)];newCard?.focus({preventScroll:true});};
     b.onclick=choose;b.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose();}};return b;
@@ -139,7 +149,7 @@ function renderCalendar(){
           const detail=data.weekSessions.find(x=>x.id===s.id),values=[];
           for(const segment of detail?.detail?.segments || [])for(const m of String(segment[2]).matchAll(/(\d+):(\d{2})/g))values.push(Number(m[1])*60+Number(m[2]));
           const fmt=n=>Math.floor(n/60)+':'+String(n%60).padStart(2,'0');
-          const note=values.length?`配速 ${fmt(Math.min(...values))}–${fmt(Math.max(...values))}/km`:'依課表與當週狀態安排';
+          const note=sessionStatus(data,s,state.today)==='incomplete'?'未完成 · 不補課、不順延':values.length?`配速 ${fmt(Math.min(...values))}–${fmt(Math.max(...values))}/km`:'依課表與當週狀態安排';
           cell.append(calendarButton(iso,`${s.type} ${s.label}`,note,false,iso<state.today));
         }
       }grid.append(cell);
@@ -148,7 +158,7 @@ function renderCalendar(){
   $('prevMonth').disabled=monthKey<=data.planStart.slice(0,7);$('nextMonth').disabled=monthKey>=data.raceDate.slice(0,7);
 }
 function calendarButton(iso,label,detail,done,stale=false){
-  const b=el('button','calsession'+(done?' done':'')+(stale?' stale':'')+(selectedDate===iso?' selected':''));b.type='button';b.setAttribute('aria-expanded',String(selectedDate===iso));b.setAttribute('aria-label',`${shortDate(iso)} ${label}`);b.append(el('span','',label));if(done)b.append(el('span','calactual','✓ 實際完成'));b.append(el('span','calpace',detail));
+  const b=el('button','calsession'+(done?' done':'')+(stale?' stale':'')+(selectedDate===iso?' selected':''));b.type='button';b.setAttribute('aria-expanded',String(selectedDate===iso));b.setAttribute('aria-label',`${shortDate(iso)} ${label}`);b.append(el('span','',label));if(done)b.append(el('span','calactual','✓ 實際完成'));else if(stale && !detail.startsWith('未完成'))b.append(el('span','calactual','紀錄待確認'));b.append(el('span','calpace',detail));
   b.onclick=()=>{selectedDate=selectedDate===iso?null:iso;renderCalendar();};return b;
 }
 function changeMonth(delta){const [y,m]=monthKey.split('-').map(Number);monthKey=new Date(Date.UTC(y,m-1+delta,1)).toISOString().slice(0,7);selectedDate=null;renderCalendar();}

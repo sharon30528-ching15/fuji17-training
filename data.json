@@ -949,5 +949,25 @@
   "planStart": "2026-08-31",
   "raceDate": "2026-12-13",
   "timeZone": "Asia/Taipei",
-  "raceDistanceKm": 17
+  "raceDistanceKm": 17,
+  "trainingPolicy": {
+    "version": "2026-10-01",
+    "title": "動態課表調整原則",
+    "workflow": [
+      "Garmin 實際表現",
+      "判斷當堂完成度",
+      "維持原定週次",
+      "微調下一堂"
+    ],
+    "principle": "原定計畫優先、缺課不順延、不硬補課",
+    "adjustmentTriggers": [
+      "連續缺課",
+      "恢復明顯不足",
+      "強度過高",
+      "受傷風險"
+    ],
+    "goal": "2026/12/13 比賽 · 17K 距離能力 · 2 小時目標",
+    "reviewSchedule": "每週一 12:00（台灣時間；自動排程尚未啟用）",
+    "dataSourceNote": "依已提供的 Garmin 紀錄／截圖判讀，尚未自動同步。已有較新日期的實績時，之前沒有對應紀錄的課程視為未完成；其餘過期課程待確認。"
+  }
 }
