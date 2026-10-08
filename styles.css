@@ -188,7 +188,7 @@ box-shadow:none!important
 .weekly-dashboard .course-result-coach b{font-size:13px}
 .weekly-dashboard .course-result-coach p{font-size:12px;line-height:1.55;margin:6px 0 0}
 @media(max-width:760px){
-.weekly-dashboard .timeline-item .course-head b{justify-content:center;gap:4px;flex-wrap:wrap}
+.weekly-dashboard .timeline-item .course-head b{flex-direction:column;align-items:center;justify-content:flex-start;gap:4px;flex-wrap:nowrap;min-height:40px;text-align:center}
 .weekly-dashboard .course-completed-tag{font-size:9px}
 .weekly-dashboard .mobile-course-detail .course-split{grid-template-columns:65px minmax(0,1fr) 72px;gap:6px}
 }
