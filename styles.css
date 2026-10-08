@@ -188,6 +188,8 @@ box-shadow:none!important
 .weekly-dashboard .course-result-coach b{font-size:13px}
 .weekly-dashboard .course-result-coach p{font-size:12px;line-height:1.55;margin:6px 0 0}
 @media(max-width:760px){
+.weekly-dashboard .timeline-item{justify-content:flex-start}
+.weekly-dashboard .timeline-item .course-head .muted{line-height:17px;white-space:nowrap}
 .weekly-dashboard .timeline-item .course-head b{flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;flex-wrap:nowrap;min-height:37px;line-height:21px;text-align:center}
 .weekly-dashboard .course-completed-tag{font-size:11px;line-height:10px;letter-spacing:.04em}
 .weekly-dashboard .timeline-item .timeline-card{margin-top:0!important;padding:0 2px 5px!important}
