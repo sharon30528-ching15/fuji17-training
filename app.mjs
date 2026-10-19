@@ -67,7 +67,13 @@ function render() {
   const strategy=document.querySelector('.weekly-strategy');strategy.querySelector('.label').textContent=`W${state.week} 訓練策略`;strategy.querySelector('b').textContent=state.plan.focus;
   const lastWeekKm=sumKm(resultsInRange(data,addDays(state.start,-7),state.start));
   text('desktopWeekStrategy',state.plan.strategy || (state.week===4?`上週完成 ${lastWeekKm.toFixed(2)}K，本週總量 ${goal}；${state.plan.focus}，為下一階段做準備。`:`本週預計 ${goal}，重點：${state.plan.focus}。`));
-  renderPolicy();renderCards();renderDetail();renderPlan();renderCalendar();renderResults();text('updated','最後更新：'+data.updated);
+  renderNextSession();renderPolicy();renderCards();renderDetail();renderPlan();renderCalendar();renderResults();text('updated','最後更新：'+data.updated);
+}
+function renderNextSession(){
+  const host=$('nextSessionCard'),s=state.sessions.find(s=>s.next);
+  host.replaceChildren();
+  if(!s){host.hidden=true;return;}host.hidden=false;
+  host.append(el('div','label','下一堂訓練'),el('b','',shortDate(s.dateISO)+' '+s.type+' '+s.main),el('p','muted',s.sub),el('p','muted',s.note));
 }
 function renderPolicy(){
   const host=$('trainingPolicy'),p=data.trainingPolicy;
@@ -111,6 +117,13 @@ function plannedDetail(s){
   const segments=s.detail?.segments;
   if(segments?.length){box.append(el('h3','','分段配速表'));const wrap=el('div','pace-table-wrap'),table=el('table','pace-table'),head=el('thead'),row=el('tr');['階段','距離','目標配速','執行重點'].forEach(v=>row.append(el('th','',v)));head.append(row);table.append(head);const body=el('tbody');segments.forEach(values=>{const tr=el('tr');values.forEach(v=>tr.append(el('td','',v)));body.append(tr);});table.append(body);wrap.append(table);box.append(wrap);}
   else box.append(el('p','muted','本堂尚未設定詳細配速，請依後續課表更新。'));
+  for(const alt of s.detail?.alternatives || []){
+    box.append(el('h3','',alt.name+' '+alt.distanceKm+'K｜'+alt.rpe));
+    const wrap=el('div','pace-table-wrap'),table=el('table','pace-table'),head=el('thead'),row=el('tr');
+    ['階段','距離','目標配速','執行重點'].forEach(v=>row.append(el('th','',v)));head.append(row);table.append(head);
+    const body=el('tbody');alt.segments.forEach(values=>{const tr=el('tr');values.forEach(v=>tr.append(el('td','',v)));body.append(tr);});
+    table.append(body);wrap.append(table);box.append(wrap);
+  }
   return box;
 }
 function renderDetail(){
